@@ -26,5 +26,39 @@
     },
     "SEMITEK USB-HID Gaming Keyboard": {
         "458796": "space"
+    },
+    "/dev/input/event1": {
+        "device_name": "HP150",
+        "inputs": {
+            "0": "X",
+            "1": "Y"
+        }
+    },
+    "/dev/input/event4": {
+        "device_name": "Seemitek Gaming Keyborad",
+        "inputs": {
+            "57": "space",
+            "30": "B",
+            "48": "D",
+            "46": "F",
+            "32": "H",
+            "18": "J",
+            "33": "L",
+            "34": "N",
+            "35": "P",
+            "23": "R",
+            "36": "T",
+            "37": "V",
+            "38": "X",
+            "50": "Z",
+            "24": "none",
+            "25": "none"
+        }
+    },
+    "/dev/input/event9": {
+        "device_name": "PS4 Contrroller",
+        "inputs": {
+            "1": "Right Y"
+        }
     }
 }

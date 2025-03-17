@@ -33,19 +33,19 @@ class USBRead:
             print(f"{idx}: {device.name} ({device.path})")
         return devices
 
-    def name_device_and_inputs(self):
+    def name_device_and_inputs(self, device):
         """Assign names to devices and their inputs."""
-        devices = self.list_usb_devices()
-        for device in devices:
-            device_name = input(f"Enter a name for device '{device.name}': ")
-            self.scan_code_map[device.path] = {"device_name": device_name, "inputs": {}}
+        device_name = input(f"Enter a name for device '{device.name}': ")
+        self.scan_code_map[device.path] = {"device_name": device_name, "inputs": {}}
 
-            print(f"Now assign names for {device_name}'s inputs. Press the button or move the joystick to identify inputs.")
-            for event in device.read_loop():
-                if event.type in [ecodes.EV_ABS, ecodes.EV_KEY, ecodes.EV_REL]:
-                    input_name = input(f"Detected code {event.code}. Enter a name for this input: ")
-                    self.scan_code_map[device.path]["inputs"][str(event.code)] = input_name  # Fixed key as string for consistency
-                    self.save_profiles()
+        print(f"Now assign names for {device_name}'s inputs. Press the button or move the joystick to identify inputs.")
+        for event in device.read_loop():
+            if event.type in [ecodes.EV_ABS, ecodes.EV_KEY, ecodes.EV_REL]:
+                input_name = input(f"Detected code {event.code}. Enter a name for this input: ")
+                self.scan_code_map[device.path]["inputs"][str(event.code)] = input_name
+                self.save_profiles()
+            elif event.type == ecodes.EV_SYN:
+                continue  # Ignore sync events to avoid noise
 
     def get_values(self):
         """Return the latest values from all connected USB devices, including named devices and inputs."""
@@ -58,16 +58,20 @@ class USBRead:
                 r, _, _ = select.select(device_fds.keys(), [], [])
                 for fd in r:
                     device = device_fds[fd]
+                    if device.path not in self.scan_code_map:
+                        self.name_device_and_inputs(device)
+
                     for event in device.read():
                         if event.type in [ecodes.EV_ABS, ecodes.EV_KEY, ecodes.EV_REL]:
                             device_name = self.scan_code_map.get(device.path, {}).get("device_name", device.name)
-                            input_name = self.scan_code_map.get(device.path, {}).get("inputs", {}).get(str(event.code), f"Code {event.code}")  # Fixed to match string keys
-                            values[device_name] = {"input": input_name, "value": event.value}
+                            input_name = self.scan_code_map.get(device.path, {}).get("inputs", {}).get(str(event.code), f"Code {event.code}")
+                            values.setdefault(device_name, []).append({"input": input_name, "value": event.value})
                             print(f"Device: {device_name}, Input: {input_name}, Value: {event.value}")
+                        elif event.type == ecodes.EV_SYN:
+                            continue  # Ignore sync events to avoid noise
         except KeyboardInterrupt:
             print("Exiting program.")
 
 # Run the Code
 usb_reader = USBRead()  # Create an instance of the class
-usb_reader.name_device_and_inputs()  # Assign device and input names
 usb_reader.get_values()  # Start reading inputs
