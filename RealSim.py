@@ -1,7 +1,5 @@
-"""
-Vrtual Envrioment:
-source .venv/bin/activate
-"""
+#Vrtual Envrioment:
+#source .venv/bin/activate
 
 import os
 import time
