@@ -1,0 +1,27 @@
+{
+    "PC Game Controller       ": {
+        "589825": "1",
+        "589826": "2",
+        "589827": "3",
+        "589828": "4",
+        "589829": "5",
+        "589830": "6",
+        "589831": "7",
+        "589832": "8",
+        "589833": "9",
+        "589834": "10",
+        "589835": "11",
+        "589836": "12"
+    },
+    "HS6209 HP150 Wireless Mouse  Mouse": {
+        "589825": "Left_Click",
+        "589826": "Right_Click",
+        "589827": "Middel_Click"
+    },
+    "Sony Interactive Entertainment Wireless Controller": {
+        "buttons": {},
+        "joysticks": {
+            "4": "test"
+        }
+    }
+}
