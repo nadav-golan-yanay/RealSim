@@ -1,3 +1,8 @@
+"""
+Vrtual Envrioment:
+source .venv/bin/activate
+"""
+
 import os
 import time
 from src.Display import Display  # Import the new display class
