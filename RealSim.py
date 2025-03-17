@@ -23,7 +23,7 @@ if __name__ == "__main__":
             if counter % 10 == 0:  # Print less frequently for SSH stability
                 print("RealSim is running...")
 
-            USB.auto_detect_device()
+            USB.get_values()
 
             display.show_message(f"USB Devices:\n{USB.list_usb_devices()}", duration=3)
             counter += 1

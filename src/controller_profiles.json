@@ -23,5 +23,8 @@
         "joysticks": {
             "4": "test"
         }
+    },
+    "SEMITEK USB-HID Gaming Keyboard": {
+        "458796": "space"
     }
 }

@@ -79,6 +79,22 @@ class USBRead:
                 key_state = "Pressed" if event.value == 1 else "Released"
                 print(f"Button Code {event.code}: {key_state}")
 
+    def get_values(self):
+        """Return the latest values from any connected USB device."""
+        devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
+        values = {}
+
+        for device in devices:
+            try:
+                for event in device.read_loop():
+                    if event.type in [ecodes.EV_ABS, ecodes.EV_KEY]:
+                        values[device.path] = {"code": event.code, "value": event.value}
+                        return values  # Return first detected value
+            except (OSError, IOError):
+                continue
+
+        return values  # Return empty if no values are detected
+
 # Run the Code
 usb_reader = USBRead()  # Create an instance of the class
 usb_reader.read_controller()  # Start reading inputs
