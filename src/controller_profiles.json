@@ -62,7 +62,7 @@
         }
     },
     "/dev/input/event7": {
-        "device_name": "\u001b[AMicrosoft Wired Keyboard",
+        "device_name": "AMicrosoft Wired Keyboard",
         "inputs": {
             "42": "Enter"
         }
