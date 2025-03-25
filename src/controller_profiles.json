@@ -66,5 +66,11 @@
         "inputs": {
             "42": "Enter"
         }
+    },
+    "/dev/input/event0": {
+        "device_name": "HP150 Wirless Mouse",
+        "inputs": {
+            "40": "Y"
+        }
     }
 }
