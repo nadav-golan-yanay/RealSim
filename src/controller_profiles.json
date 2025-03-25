@@ -72,5 +72,12 @@
         "inputs": {
             "40": "Y"
         }
+    },
+    "/dev/input/event2": {
+        "device_name": "Microsoft Wired Keyboard",
+        "inputs": {
+            "105": "Right",
+            "103": "Up"
+        }
     }
 }
