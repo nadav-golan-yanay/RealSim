@@ -31,7 +31,13 @@
         "device_name": "HP150",
         "inputs": {
             "0": "X",
-            "1": "Y"
+            "1": "Y",
+	    "8": "Wheel Direction",
+	    "11": "Wheel spin",
+            "272": "Left",
+            "274": "Middel",
+            "273": "Right"
+
         }
     },
     "/dev/input/event4": {
