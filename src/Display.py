@@ -24,7 +24,7 @@ class Display:
         draw.text((0, 0), message, font=self.font, fill=255)
         self.oled.image(image)
         self.oled.show()
-        time.sleep(duration)
+#        time.sleep(duration)
 
     def clear_display(self):
         """ Clear the OLED screen """
